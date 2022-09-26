@@ -49,11 +49,11 @@ Describe the current state:
 
 One approach would be to break the existing code into sub-libraries.
 
-- In-memory data structure based on SourceNode
-- Generate data structure, without formatting
+- In-memory data structure based on the guts of SourceMapGenerator
+- Generate data structure, without formatting.  Based on SourceNode.
 - Format generated data structure to JSON
 - Parse JSON to data structure
-- Consume data structure
+- Consume data structure, based on the guts of SourceMapConsumer
 - ESlint configuration for all of the above
 - Benchmarks
 
@@ -77,11 +77,18 @@ contribute a patch to Node to fix their perf issue.  Someone might ping the
 upstream Chromium owners to see if they care as well.  Note: this code is
 currently BSD-licensed to the Mozilla Foundation.
 
+## Testing
+
+Consider how to test each of the modules without having all of the modules
+have devDependencies on each other, or making those dependencies not terribly
+confusing.
+
 ## Other changes
 
 - ES2021 as syntax baseline
 - Move to esm modules? Will make any WASM more straightforward with top-level
   await.
+- Might be "easiest" to have monorepo for all of the projects?
 - `master` -> `main`
 
 ## Notes
